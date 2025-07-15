@@ -49,7 +49,7 @@ contract ERC20Token is
     }
 
     /// @notice Reedeems tokens for Ether. Pegged 1:1 with Ether for demo.
-    function redeem(uint256 _amount) external nonReentrant {
+    function redeem(uint256 _amount) external nonReentrant whenNotPaused {
         if (_amount == 0) revert ZeroAmountError();
         if (address(this).balance < _amount) revert InsufficientReserveError(_amount, address(this).balance);
         _burn(msg.sender, _amount);
