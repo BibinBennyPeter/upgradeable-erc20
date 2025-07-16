@@ -1,66 +1,57 @@
-## Foundry
+# Upgradeable ERC20 Token Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository demonstrates a production‑grade, upgradeable ERC20 token implemented in Solidity, using OpenZeppelin's upgradeable contracts and Forge for testing.
 
-Foundry consists of:
+## Structure
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+├── src/
+│   └── ERC20Token.sol       # Core upgradeable token contract
+├── test/
+│   ├── ERC20Token.t.sol     # Comprehensive Forge tests
+│   └── ERC20TokenV2.sol     
+├── lib/
+│   └── openzeppelin-contracts-upgradeable/  # OZ upgradeable contracts submodule
+├── remappings.txt           # Import remappings for Forge
+├── foundry.toml             # Foundry configuration
+└── README.md                # Root overview
 ```
 
-### Test
+## Getting Started
 
-```shell
-$ forge test
-```
+1. **Install Foundry**:
 
-### Format
+   ```bash
+   curl -L https://foundry.paradigm.xyz | bash
+   foundryup
+   ```
 
-```shell
-$ forge fmt
-```
+2. **Clone and initialize submodules**:
 
-### Gas Snapshots
+   ```bash
+   git clone https://github.com/BibinBennyPeter/upgradeable-erc20.git
+   cd upgradeable-erc20
+   git submodule update --init --recursive
+   ```
 
-```shell
-$ forge snapshot
-```
+3. **Build & Test**:
 
-### Anvil
+   ```bash
+   forge build
+   forge test
+   ```
 
-```shell
-$ anvil
-```
+4. \*\*4. **Inspect Contracts**:
 
-### Deploy
+   * [`src/ERC20Token.sol`](https://github.com/BibinBennyPeter/upgradeable-erc20/blob/main/src/ERC20Token.sol): implements an upgradeable ERC20 token with mint, burn, redeem, pause/unpause, and UUPS upgrade logic.
+   * [`src/README.md`](src/README.md): detailed contract documentation.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+5. **Review Tests**:
 
-### Cast
+   * [`test/ERC20Token.t.sol`](https://github.com/BibinBennyPeter/upgradeable-erc20/blob/main/test/ERC20Token.t.sol): tests initialization, mint/burn, redeem edge cases, pause/unpause, and upgrade flows.
+   * [`test/README.md`](test/README.md): detailed test suite documentation. **Review Tests**:
+   * `test/ERC20Token.t.sol`: tests initialization, mint/burn, redeem edge cases, pause/unpause, and upgrade flows.
 
-```shell
-$ cast <subcommand>
-```
+---
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Explore each folder's README for more detailed explanations of contracts and tests.
